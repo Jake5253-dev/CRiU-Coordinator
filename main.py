@@ -1,5 +1,7 @@
 import typer
 import os
+import platform
+import subprocess
 app = typer.Typer()
 
 
@@ -29,9 +31,18 @@ def printDirectory():
         
 @app.command()
 def printProcesses():
-    pid_list = os.listdir('/proc')
-    print(pid_list)
+    """ Only works on Linux, do not use on windows"""
+    systemString = platform.system()
+    if systemString != "Linux":
+        print("This is not a Linux system, not performing function")
+    else:
+        pid_list = subprocess.run(["ps"], capture_output=True, text=True)
 
+        with open("pid_list_file.txt", "w") as f:
+            f.write(pid_list.stdout)
 
+        with open("pid_list_file.txt", "r") as fexplorer:
+            for line in fexplorer:
+                print(line.strip())
 if __name__ == "__main__":
     app()
