@@ -76,7 +76,7 @@ def who_am_i():
 @app.command()
 def CRiU_Dump():
     PID = 1852
-    subprocess.run(["sudo criu dump -D {PID} --shell-job"])
+    subprocess.run(["sudo", "criu", "dump", "-t", str(PID), "--shell-job", "-D", "criu_holding"])
 
 if __name__ == "__main__":
     app()
