@@ -73,5 +73,10 @@ def print_processes():
 def who_am_i():
     print(f"This process ID is {os.getpid()}")
 
+@app.command()
+def CRiU_Dump():
+    PID = 1852
+    subprocess.run(["sudo criu dump -D {PID} --shell-job"])
+
 if __name__ == "__main__":
     app()
