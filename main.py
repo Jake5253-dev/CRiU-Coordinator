@@ -2,6 +2,7 @@ import typer
 import os
 import platform
 import subprocess
+import re
 app = typer.Typer()
 
 
@@ -23,7 +24,7 @@ def env_hello():
     print(f"Hello {name} from Python")
 
 @app.command()    
-def printDirectory():
+def printDirectory(function: bool = False):
     name = os.listdir()
     print("Here is a list of all files")
     for file in name:
@@ -40,9 +41,23 @@ def printProcesses():
 
         with open("pid_list_file.txt", "w") as f:
             f.write(pid_list.stdout)
-
+        python_process_list = []
         with open("pid_list_file.txt", "r") as fexplorer:
             for line in fexplorer:
-                print(line.strip())
+                # print(line.strip())
+                if re.search("python|python3", line.strip()):
+                    python_process_list.append(str(line.strip()))
+
+        my_id = os.getpid()
+        print(f"My process ID is {my_id}")
+        print(python_process_list)
+
+@app.command()
+def CRiU_Coordinator():
+    print("Starting CRiU_Coordinator")
+    printProcesses()
+    print("Ending CRiU_Coordinator")
+
+
 if __name__ == "__main__":
     app()
