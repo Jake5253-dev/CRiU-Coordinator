@@ -3,6 +3,7 @@ import os
 import platform
 import subprocess
 import re
+from rich import print
 app = typer.Typer()
 
 
@@ -56,13 +57,19 @@ def CRiU_Coordinator():
     print("Starting CRiU_Coordinator")
     who_am_i()
     process_list = get_current_processes()
+    process_dict = {}
+    count = 1
+    for process in process_list:
+        process_dict.update({count: process[0:4]})
+        count = count + 1
+    print(process_dict)
+
     print("Ending CRiU_Coordinator")
 
 @app.command()
 def print_processes():
     who_am_i()
     print(get_current_processes())
-
 def who_am_i():
     print(f"This process ID is {os.getpid()}")
 
