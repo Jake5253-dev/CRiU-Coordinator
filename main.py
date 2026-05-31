@@ -29,10 +29,10 @@ def printDirectory(function: bool = False):
     print("Here is a list of all files")
     for file in name:
         print(str(file)+ "\n")
-        
-@app.command()
-def printProcesses(returnData: bool = False):
+
+def get_current_processes():
     """ Only works on Linux, do not use on windows"""
+
     systemString = platform.system()
     if systemString != "Linux":
         print("This is not a Linux system, not performing function")
@@ -49,18 +49,22 @@ def printProcesses(returnData: bool = False):
                     python_process_list.append(str(line.strip()))
 
         my_id = os.getpid()
-        print(f"My process ID is {my_id}")
-        if returnData:
-            return python_process_list
-        else:
-            print(python_process_list)
+        return python_process_list
 
 @app.command()
 def CRiU_Coordinator():
     print("Starting CRiU_Coordinator")
-    process_list = printProcesses(returnData = True)
+    who_am_i()
+    process_list = get_current_processes()
     print("Ending CRiU_Coordinator")
 
+@app.command()
+def print_processes():
+    who_am_i()
+    print(get_current_processes())
+
+def who_am_i():
+    print(f"This process ID is {os.getpid()}")
 
 if __name__ == "__main__":
     app()
