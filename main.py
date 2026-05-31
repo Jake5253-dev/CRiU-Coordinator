@@ -31,7 +31,7 @@ def printDirectory(function: bool = False):
         print(str(file)+ "\n")
         
 @app.command()
-def printProcesses():
+def printProcesses(returnData: bool = False):
     """ Only works on Linux, do not use on windows"""
     systemString = platform.system()
     if systemString != "Linux":
@@ -50,12 +50,15 @@ def printProcesses():
 
         my_id = os.getpid()
         print(f"My process ID is {my_id}")
-        print(python_process_list)
+        if returnData:
+            return python_process_list
+        else:
+            print(python_process_list)
 
 @app.command()
 def CRiU_Coordinator():
     print("Starting CRiU_Coordinator")
-    printProcesses()
+    process_list = printProcesses(returnData = True)
     print("Ending CRiU_Coordinator")
 
 
