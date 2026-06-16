@@ -1,6 +1,8 @@
 """Starting point for CRiU-Coordinator"""
 
-if __name__ == "__main__":
+import Process_Finder
+
+def print_logo():
     print(r"  ___ ___ _ _   _    ___ ___   ___   ")
     print(r" / __| _ (_) | | |  / __/ _ \ / _ \  ")
     print(r"| (__|   / | |_| | | (_| (_) | (_) | ")
@@ -8,3 +10,13 @@ if __name__ == "__main__":
     print(r"| _ \   \_ _| \| | /_\_   _/ _ \| _ \\")
     print(r"|   / |) | || .` |/ _ \| || (_) |   /")
     print(r"|_|_\___/___|_|\_/_/ \_\_| \___/|_|_\\")
+
+def first_instructions():
+    print("Welcome to CRiU Coordinator")
+    print("Here are a list of processes on this VM")
+
+if __name__ == "__main__":
+    print_logo()
+    first_instructions()
+    pf = Process_Finder()
+    pf.get_process_list()
