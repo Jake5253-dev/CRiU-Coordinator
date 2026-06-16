@@ -75,16 +75,19 @@ def who_am_i():
 
 @app.command()
 def CRiU_Dump():
-    PID = 9371
-    subprocess.run(["sudo", "criu", "dump", "-t", str(PID), "--shell-job", "-D", "criu_holding"])
-
+    PID = 1610 # this is changable to whatever process ID is created to the daemon process
+    result = subprocess.run(["sudo", "criu", "dump", "-t", str(PID), "-D", "criu_holding", "-vvv"])
+    if result.returncode == 0:
+        print("OK")
+    else:
+        print("FAIL")
 @app.command()
 def CRiU_Restore():
     target_dir = os.path.abspath("criu_holding")
-    result = subprocess.run(["sudo", "criu", "restore",
-    "--shell-job",
+    result = subprocess.Popen(["sudo", "criu", "restore",
     "-D", target_dir,
     "-vvv",
+    "-d", #detach process
     "-o", os.path.join(target_dir, "restore.log")
     ])
     if result.returncode == 0:
