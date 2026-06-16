@@ -1,97 +1,10 @@
-import typer
-import os
-import platform
-import subprocess
-import re
-from rich import print
-app = typer.Typer()
-
-
-@app.command()
-def main(name: str):
-	print(f"Hello {name}")
-
-@app.command()
-def goodbye(name: str, formal: bool = False):
-    if formal:
-        print(f"Goodbyae Ms. {name}. Have a good day.")
-    
-    else:
-        print(f"Bye {name}!")
-
-@app.command()
-def env_hello():
-    name = os.getenv("MY_NAME", "World")
-    print(f"Hello {name} from Python")
-
-@app.command()    
-def printDirectory(function: bool = False):
-    name = os.listdir()
-    print("Here is a list of all files")
-    for file in name:
-        print(str(file)+ "\n")
-
-def get_current_processes():
-    """ Only works on Linux, do not use on windows"""
-
-    systemString = platform.system()
-    if systemString != "Linux":
-        print("This is not a Linux system, not performing function")
-    else:
-        pid_list = subprocess.run(["ps"], capture_output=True, text=True)
-
-        with open("pid_list_file.txt", "w") as f:
-            f.write(pid_list.stdout)
-        python_process_list = []
-        with open("pid_list_file.txt", "r") as fexplorer:
-            for line in fexplorer:
-                # print(line.strip())
-                if re.search("python|python3", line.strip()):
-                    python_process_list.append(str(line.strip()))
-
-        my_id = os.getpid()
-        return python_process_list
-
-@app.command()
-def CRiU_Coordinator():
-    print("Starting CRiU_Coordinator")
-    who_am_i()
-    process_list = get_current_processes()
-    process_dict = {}
-    count = 1
-    for process in process_list:
-        process_dict.update({count: process[0:4]})
-        count = count + 1
-    print(process_dict)
-
-    print("Ending CRiU_Coordinator")
-
-@app.command()
-def print_processes():
-    who_am_i()
-    print(get_current_processes())
-def who_am_i():
-    print(f"This process ID is {os.getpid()}")
-
-@app.command()
-def CRiU_Dump():
-    PID = 1610 # this is changable to whatever process ID is created to the daemon process
-    result = subprocess.run(["sudo", "criu", "dump", "-t", str(PID), "-D", "criu_holding", "-vvv"])
-    if result.returncode == 0:
-        print("OK")
-    else:
-        print("FAIL")
-@app.command()
-def CRiU_Restore():
-    target_dir = os.path.abspath("criu_holding")
-    result = subprocess.Popen(["sudo", "criu", "restore",
-    "-D", target_dir,
-    "-vvv",
-    "-d", #detach process
-    "-o", os.path.join(target_dir, "restore.log")
-    ])
-    if result.returncode == 0:
-        print("OK")
+"""Starting point for CRiU-Coordinator"""
 
 if __name__ == "__main__":
-    app()
+    print("  ___ ___ _ _   _    ___ ___   ___   ")
+    print(" / __| _ (_) | | |  / __/ _ \ / _ \  ")
+    print("| (__|   / | |_| | | (_| (_) | (_) | ")
+    print(" \___|_|_\_|\___/   \___\___/_\___/_ ")
+    print("| _ \   \_ _| \| | /_\_   _/ _ \| _ \\")
+    print("|   / |) | || .` |/ _ \| || (_) |   /")
+    print("|_|_\___/___|_|\_/_/ \_\_| \___/|_|_\\")

@@ -220,3 +220,4 @@ __marimo__/
 # Dev Stuff
 pid_list_file.txt
 criu_holding/
+.idea/
