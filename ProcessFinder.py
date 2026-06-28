@@ -9,7 +9,7 @@ class ProcessFinder:
 
     def __init__(self):
         #grabs the PID to allow elimination of itself from CRIU Dumping targets
-        self.my_id = self._set_my_id()
+        self.my_id = self.__set_my_id()
 
     def get_process_list(self):
         """ Generates a list of PIDs that are potential targets for stopping
@@ -17,9 +17,9 @@ class ProcessFinder:
 
         pid_list: str = subprocess.run(["ps", "-lax"], capture_output=True, text=True)
         back_to_lines = pid_list.stdout.splitlines()
-        filtered_pid_list = self.filter_process_list(back_to_lines)
+        filtered_pid_list = self.__filter_process_list(back_to_lines)
         print(_filtered_pid_list)
-    def _filter_process_list(self, unfiltered_list: list) -> list:
+    def __filter_process_list(self, unfiltered_list: list) -> list:
         """Handles the filtering of the lists returned to get_process_list"""
 
         string_list: list = []
@@ -33,9 +33,9 @@ class ProcessFinder:
         
         
 
-        return _remove_self_pid(string_list)
+        return __remove_self_pid(string_list)
         
-    def _remove_self_pid(self, string_list: list) -> list:
+    def __remove_self_pid(self, string_list: list) -> list:
         removed_self_pid_list = []
         for line in string_list:
             self_pid = False
@@ -53,7 +53,7 @@ class ProcessFinder:
         return removed_self_pid_list
 
 
-    def _set_my_id(self):
+    def __set_my_id(self):
         self.my_id = os.getpid()
 
 
