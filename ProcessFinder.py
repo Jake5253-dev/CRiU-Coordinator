@@ -45,7 +45,7 @@ class ProcessFinder:
             
             #This is the third item in the string, which is PID
             #Other columns may randomly be the same so we must target PID column only
-            if split_list[2] == self.my_id:
+            if split_list[2] == str(self.my_id):
                 self_pid= True
 
             if self_pid == False:
