@@ -1,18 +1,21 @@
 import subprocess
 import re
+import os
 
 
-class Process_Finder:
+class ProcessFinder:
     """Class that finds all current processes within the
     VM enviroment it finds itself in"""
 
     def __init__(self):
-        pass
+        self.my_id = self._set_my_id(self)
+
     def get_process_list(self):
         pid_list: str = subprocess.run(["ps", "-lax"], capture_output=True, text=True)
         back_to_lines = pid_list.stdout.splitlines()
-        #for line in back_to_lines:
-        #    print(line)
+        
+
+
 
         filtered_pid_list = self.filter_process_list(back_to_lines)
 
@@ -25,4 +28,11 @@ class Process_Finder:
                 string_list.append(line)
         
         return string_list
+
+    def _set_my_id(self):
+        self.my_id = os.getpid()
+    
+    def get_my_id(self):
+        return self.my_id
+
 

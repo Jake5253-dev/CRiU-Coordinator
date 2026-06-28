@@ -18,5 +18,5 @@ def first_instructions():
 if __name__ == "__main__":
     print_logo()
     first_instructions()
-    pf = Process_Finder()
+    pf = ProcessFinder()
     pf.get_process_list()
