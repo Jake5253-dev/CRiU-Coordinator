@@ -53,4 +53,4 @@ class ProcessFinder:
         return removed_self_pid_list
 
     def __header(self):
-        print("F   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND")
+        return("F   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND")
