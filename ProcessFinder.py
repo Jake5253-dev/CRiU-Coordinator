@@ -19,7 +19,7 @@ class ProcessFinder:
         pid_list: str = subprocess.run(["ps", "-lax"], capture_output=True, text=True)
         back_to_lines = pid_list.stdout.splitlines()
         filtered_pid_list = self.__filter_process_list(back_to_lines)
-        print(self.__header)
+        print(self.__header())
         print(filtered_pid_list)
         print(f"my process id is {self.my_id}")
 
