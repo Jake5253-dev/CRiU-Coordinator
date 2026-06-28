@@ -8,7 +8,7 @@ class ProcessFinder:
     VM enviroment it finds itself in"""
 
     def __init__(self):
-        self.my_id = self._set_my_id(self)
+        self.my_id = self._set_my_id()
 
     def get_process_list(self):
         pid_list: str = subprocess.run(["ps", "-lax"], capture_output=True, text=True)
