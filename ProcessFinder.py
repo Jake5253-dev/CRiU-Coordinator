@@ -19,6 +19,7 @@ class ProcessFinder:
         pid_list: str = subprocess.run(["ps", "-lax"], capture_output=True, text=True)
         back_to_lines = pid_list.stdout.splitlines()
         filtered_pid_list = self.__filter_process_list(back_to_lines)
+        print(self.__header)
         print(filtered_pid_list)
         print(f"my process id is {self.my_id}")
 
@@ -41,12 +42,15 @@ class ProcessFinder:
             self_pid = False
             split_list = line.split()
             
-            for item in split_list:
-                if item == str(self.my_id):
-                    self_pid = True
-                    break
             
+            #This is the third item in the string, which is PID
+            #Other columns may randomly be the same so we must target PID column only
+            if split_list[2] == self.my_id:
+                self_pid= True
 
             if self_pid == False:
                 removed_self_pid_list.append(line)
         return removed_self_pid_list
+
+    def __header(self):
+        print("F   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND")
