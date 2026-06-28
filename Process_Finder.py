@@ -8,5 +8,5 @@ class Process_Finder:
     def __init__(self):
         pass
     def get_process_list(self):
-        pid_list = subprocess.run(["ps", "-lax", "grep", "main.py"], capture_output=True, text=True)
+        pid_list = subprocess.run(["ps", "-lax", "|", "grep", "main.py"], capture_output=True, text=True)
         print(pid_list)
