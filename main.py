@@ -1,6 +1,6 @@
 """Starting point for CRiU-Coordinator"""
 
-from Process_Finder import Process_Finder
+from ProcessFinder import ProcessFinder
 
 def print_logo():
     print(r"  ___ ___ _ _   _    ___ ___   ___   ")
