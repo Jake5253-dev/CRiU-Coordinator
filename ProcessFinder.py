@@ -11,7 +11,7 @@ class ProcessFinder:
     def __init__(self):
         #grabs the PID to allow elimination of itself from CRIU Dumping targets
         self.my_id = os.getpid()
-        self.list_of_processes()
+        self.list_of_processes = self.generate_process_list()
 
     def generate_process_list(self):
         """ Generates a list of PIDs that are potential targets for stopping
@@ -56,5 +56,5 @@ class ProcessFinder:
 
     def get_process_list(self):
         print(self.__header())
-        print(self.generate_process_list)
+        print(self.list_of_processes)
         print(f"my process id is {self.my_id}")
