@@ -19,7 +19,7 @@ class ProcessFinder:
 
         pid_list: str = subprocess.run(["ps", "-lax"], capture_output=True, text=True)
         back_to_lines = pid_list.stdout.splitlines()
-        self.list_of_processes = self.__filter_process_list(back_to_lines)
+        return self.__filter_process_list(back_to_lines)
         
 
     def __filter_process_list(self, unfiltered_list: list) -> list:
