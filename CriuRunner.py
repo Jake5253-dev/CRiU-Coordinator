@@ -8,7 +8,7 @@ class CriuRunner:
 
 
     def command_loop(self):
-        run bool: = True
+        bool: run = True
         while run:
             print("Please choose an option from the following list:")
             print("1: dump a process")
@@ -28,10 +28,10 @@ class CriuRunner:
                     print("Please select an avaliable option")
                     continue
 
-    def dump_process()
+    def dump_process(self)
         print("activated dumping processes")
 
-    def restore_process()
+    def restore_process(self)
         print("activated restoring a process")
 
     
