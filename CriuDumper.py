@@ -2,10 +2,10 @@
 
 
 class CriuDumper:
-""" Criu Dumping class, takes in a PID and moves the dumped PID contents to a folder"""
+    """ Criu Dumping class, takes in a PID and moves the dumped PID contents to a folder"""
 
     def __init__(self):
-    Pass
+        Pass
 
 
     def dump_daemon_process(PID_num: String):
