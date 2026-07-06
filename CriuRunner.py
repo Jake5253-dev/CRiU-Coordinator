@@ -11,7 +11,7 @@ class CriuRunner:
 
     def command_loop(self):
         running = True
-        while run:
+        while running:
             print("Please choose an option from the following list:")
             print("1: dump a process")
             print("2: restore a process")
