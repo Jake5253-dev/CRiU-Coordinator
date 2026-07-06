@@ -3,12 +3,14 @@ class CriuRunner:
     """Performs the loop to run the Criu CoOrdinator"""
 
     def __init__(self):
-        list: self.active_daemon_PID = []
-        list: self.dumps = []
+        self.active_daemon_PID: list
+        self.dumps: list
+        running: bool
+
 
 
     def command_loop(self):
-        bool: run = True
+        running = True
         while run:
             print("Please choose an option from the following list:")
             print("1: dump a process")
@@ -22,7 +24,7 @@ class CriuRunner:
                 case "2":
                     self.restore_process()
                 case "3":
-                    run = False
+                    running = False
                     continue
                 case _:
                     print("Please select an avaliable option")
