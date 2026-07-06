@@ -9,11 +9,11 @@ class ProcessFinder:
     VM enviroment it finds itself in"""
 
     def __init__(self):
-        #grabs the PID to allow elimination of itself from CRIU Dumping targets
+        
         self.my_id = os.getpid()
-        self.list_of_processes = self.generate_process_list()
+        self.list_of_processes = self.__generate_process_list()
 
-    def generate_process_list(self):
+    def __generate_process_list(self):
         """ Generates a list of PIDs that are potential targets for stopping
         by CRIU CoOrdinator"""
 
@@ -23,7 +23,7 @@ class ProcessFinder:
         
 
     def __filter_process_list(self, unfiltered_list: list) -> list:
-        """Handles the filtering of the lists returned to get_process_list"""
+        """Handles the filtering of the lists returned to __generate_process_list"""
 
         string_list: list = []
 
@@ -36,7 +36,9 @@ class ProcessFinder:
         return self.__remove_self_pid(string_list)
         
     def __remove_self_pid(self, string_list: list) -> list:
-        removed_self_pid_list = []
+
+        """ Removes the Processes's own PID as we don't want this to be dumped""" 
+        return_list = []
         for line in string_list:
             self_pid = False
             split_list = line.split()
@@ -48,13 +50,15 @@ class ProcessFinder:
                 self_pid= True
 
             if self_pid == False:
-                removed_self_pid_list.append(line)
-        return removed_self_pid_list
+                return_list.append(line)
+        return return_list
 
     def __header(self):
         return("F   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND")
 
     def get_process_list(self):
+
+        """Method prints the process list and what PID # is associated with CRIU CoOrdinator"""
         print(self.__header())
         for process in self.list_of_processes:
             print(process)
