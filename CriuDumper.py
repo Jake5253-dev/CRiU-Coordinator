@@ -26,9 +26,11 @@ class CriuDumper:
 
     def dump_logging(Criu_dump_log: String):
         with open("dump_log.txt") as f:
-            f.write(new_dump_log())
+            f.write(new_dump_log_paragraph())
             f.write(Criu_dump_log)
 
-    def new_dump_log():
+    def new_dump_log_paragraph():
+        
+        formatting_string = "-------------------\n New Entry\n -------------------\n"
 
-        return formatting_string = "-------------------\n New Entry\n -------------------\n"
+        return formatting_string
