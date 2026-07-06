@@ -28,10 +28,10 @@ class CriuRunner:
                     print("Please select an avaliable option")
                     continue
 
-    def dump_process(self)
+    def dump_process(self):
         print("activated dumping processes")
 
-    def restore_process(self)
+    def restore_process(self):
         print("activated restoring a process")
 
     
