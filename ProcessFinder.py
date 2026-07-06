@@ -52,9 +52,10 @@ class ProcessFinder:
         return removed_self_pid_list
 
     def __header(self):
-        return("  F   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND")
+        return("F   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND")
 
     def get_process_list(self):
         print(self.__header())
-        print(self.list_of_processes)
+        for process in self.list_of_processes:
+            print(process)
         print(f"my process id is {self.my_id}")
