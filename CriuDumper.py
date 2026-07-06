@@ -1,7 +1,7 @@
 
 
 
-Class CriuDumper
+Class CriuDumper:
 """ Criu Dumping class, takes in a PID and moves the dumped PID contents to a folder"""
 
 def __init__(self):
@@ -15,7 +15,7 @@ def dump_daemon_process(PID_num: String):
 
     #Stores the dump in a sub folder called criu_holding
     #TODO create a more sophisticated dump file storage system
-    
+
 PID = PID_num 
     result = subprocess.run(["sudo", "criu", "dump", "-t", str(PID), "-D", "criu_holding", "-vvv"])
     if result.returncode == 0:
