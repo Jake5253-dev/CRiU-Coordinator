@@ -1,6 +1,7 @@
 """Starting point for CRiU-Coordinator"""
 
 from ProcessFinder import ProcessFinder
+from CriuDumper import CriuDumper
 
 def print_logo():
     print(r"  ___ ___ _ _   _    ___ ___   ___   ")
@@ -19,4 +20,7 @@ if __name__ == "__main__":
     print_logo()
     first_instructions()
     pf = ProcessFinder()
+    cr = CriuDumper
     pf.get_process_list()
+    
+
