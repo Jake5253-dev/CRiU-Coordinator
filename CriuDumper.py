@@ -1,7 +1,7 @@
 
 
 
-Class CriuDumper:
+class CriuDumper:
 """ Criu Dumping class, takes in a PID and moves the dumped PID contents to a folder"""
 
 def __init__(self):
