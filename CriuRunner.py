@@ -5,7 +5,7 @@ class CriuRunner:
     def __init__(self):
         self.active_daemon_PID: list
         self.dumps: list
-        running: bool
+        
 
 
 
@@ -24,7 +24,7 @@ class CriuRunner:
                 case "2":
                     self.restore_process()
                 case "3":
-                    self.running = False
+                    running = False
                     print("Shutting down CRiU CoOridnator")
                     continue
                 case _:
