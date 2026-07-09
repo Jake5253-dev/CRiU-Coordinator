@@ -24,7 +24,8 @@ class CriuRunner:
                 case "2":
                     self.restore_process()
                 case "3":
-                    running = False
+                    self.running = False
+                    print("Shutting down CRiU CoOridnator")
                     continue
                 case _:
                     print("Please select an avaliable option")
