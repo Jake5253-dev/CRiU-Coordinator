@@ -221,3 +221,4 @@ __marimo__/
 pid_list_file.txt
 criu_holding/
 .idea/
+CriuDumps
