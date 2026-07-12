@@ -40,7 +40,7 @@ class CriuRunner:
 
     def dump_process(self):
         print("Please select a process to stop:")
-        for process in self.active_daemon_PID
+        for process in self.active_daemon_PID:
             print(process)
         
         # self.cd.dump_daemon_process()
