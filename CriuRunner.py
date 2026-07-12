@@ -1,13 +1,18 @@
 from CriuDumper import CriuDumper
+from ProcessFinder import ProcessFinder
 
 class CriuRunner:
 
     """Performs the loop to run the Criu CoOrdinator"""
 
     def __init__(self):
-        self.active_daemon_PID: list
-        self.dumps: list
         self.cd = CriuDumper()
+        self.pf = ProcessFinder()
+        
+        self.active_daemon_PID = self.pf.get_process_list: list
+        self.dumps: list
+        
+        
 
 
 
