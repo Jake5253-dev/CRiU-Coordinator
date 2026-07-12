@@ -56,10 +56,13 @@ class ProcessFinder:
     def __header(self):
         return("F   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND")
 
-    def get_process_list(self):
+    def print_process_list(self):
 
         """Method prints the process list and what PID # is associated with CRIU CoOrdinator"""
         print(self.__header())
         for process in self.list_of_processes:
             print(process)
         print(f"my process id is {self.my_id}")
+
+    def get_process_list() -> list:
+        return self.list_of_processes
