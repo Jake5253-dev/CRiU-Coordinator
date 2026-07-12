@@ -22,7 +22,7 @@ if __name__ == "__main__":
     first_instructions()
     pf = ProcessFinder()
     cr = CriuRunner()
-    pf.get_process_list()
+    pf.print_process_list()
     cr.command_loop()
     
 
