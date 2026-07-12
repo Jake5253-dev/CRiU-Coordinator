@@ -24,7 +24,7 @@ class CriuDumper:
         ,"-D", str(__return_criu_dump_folder(self)), "-vvv"])
         if result.returncode == 0:
             print("OK")
-        elif:
+        else:
             print("Dumping Failed")
     
     def __return_criu_dump_folder(self):
