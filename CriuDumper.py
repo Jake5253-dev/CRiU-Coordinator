@@ -22,7 +22,7 @@ class CriuDumper:
 
         PID = PID_num 
         result = subprocess.run(["sudo", "criu", "dump", "-t", str(PID)
-        ,"-D", str(self.__return_criu_dump_folder(self)), "-vvv"])
+        ,"-D", str(self.__return_criu_dump_folder()), "-vvv"])
         if result.returncode == 0:
             print("OK")
         else:
