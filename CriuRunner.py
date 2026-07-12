@@ -50,8 +50,8 @@ class CriuRunner:
             count = 0
             for process in self.active_daemon_PID:
                 count = count + 1
-                back_to_lines = process.stdout.splitlines()
-                process_dict[count] = back_to_lines[2]
+                process_string_list = process.split()
+                process_dict[count] = process_string_list[2]
             for key, value in process_dict.items():
                 print(f"{key}: {value}")
         # self.cd.dump_daemon_process()
