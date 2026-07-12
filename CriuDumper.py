@@ -1,4 +1,4 @@
-
+import os
 
 
 class CriuDumper:
@@ -22,7 +22,10 @@ class CriuDumper:
             print("OK")
         else:
             print("Dumping Failed")
-
+    def select_criu_dump_folder(self):
+        print("Entered select_criu_dump_foler")
+        print(os.getcwd())
+        print(os.getcwd() + "CriuDumps")
 
     def dump_logging(Criu_dump_log: String):
         with open("dump_log.txt") as f:
