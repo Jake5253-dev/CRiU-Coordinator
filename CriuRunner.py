@@ -1,3 +1,5 @@
+from CriuDumper import CriuDumper
+
 class CriuRunner:
 
     """Performs the loop to run the Criu CoOrdinator"""
@@ -5,7 +7,7 @@ class CriuRunner:
     def __init__(self):
         self.active_daemon_PID: list
         self.dumps: list
-        
+        self.cr = CriuDumper()
 
 
 
@@ -32,12 +34,9 @@ class CriuRunner:
                     continue
 
     def dump_process(self):
-        print("activated dumping processes")
-
+        print("Entered CriuRunner method dump_process")
+        self.cr.select_criu_dump_folder()
+        print("Exited CiruRunner method dump_process")
     def restore_process(self):
         print("activated restoring a process")
 
-    
-
-
-        
