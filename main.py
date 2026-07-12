@@ -20,9 +20,7 @@ def first_instructions():
 if __name__ == "__main__":
     print_logo()
     first_instructions()
-    pf = ProcessFinder()
     cr = CriuRunner()
-    pf.print_process_list()
     cr.command_loop()
     
 
