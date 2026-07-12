@@ -19,7 +19,8 @@ class CriuRunner:
     def command_loop(self):
         running = True
         while running:
-            pf.print_process_list()
+            print("")
+            self.pf.print_process_list()
             print("Please choose an option from the following list:")
             print("1: dump a process")
             print("2: restore a process")
@@ -40,12 +41,12 @@ class CriuRunner:
                     continue
 
     def dump_process(self):
+        print("")
         print("Please select a process to stop:")
         if not self.active_daemon_PID:
             print("There are no processes to stop")
         else:
-            for process in self.active_daemon_PID:
-                print(process)
+            self.pf.print_process_list()
         
         # self.cd.dump_daemon_process()
         

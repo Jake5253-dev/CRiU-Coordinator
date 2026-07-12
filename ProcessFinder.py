@@ -54,7 +54,7 @@ class ProcessFinder:
         return return_list
 
     def __header(self):
-        return("F   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND")
+        return("List of Processes:\nF   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND")
 
     def print_process_list(self):
 
