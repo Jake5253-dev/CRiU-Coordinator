@@ -7,8 +7,8 @@ class CriuDumper:
     def __init__(self):
 
         self.dump_folder_path_string= os.getcwd()+ "/CriuDumps"
-        if not  os.path.exists(dump_folder_path_string):
-            os.mkdir(dump_folder_path_string)
+        if not  os.path.exists(self.dump_folder_path_string):
+            os.mkdir(self.dump_folder_path_string)
 
 
     def dump_daemon_process(PID_num: String):
