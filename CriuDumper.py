@@ -5,7 +5,10 @@ class CriuDumper:
     """ Criu Dumping class, takes in a PID and moves the dumped PID contents to a folder"""
 
     def __init__(self):
-        pass
+
+        self.dump_folder_path_string= os.getcwd()+ "/CriuDumps": str
+        if not  os.path.exists(dump_folder_path_string):
+            os.mkdir(dump_folder_path_string)
 
 
     def dump_daemon_process(PID_num: String):
@@ -17,28 +20,21 @@ class CriuDumper:
         #TODO create a more sophisticated dump file storage system
 
         PID = PID_num 
-        result = subprocess.run(["sudo", "criu", "dump", "-t", str(PID), "-D", "criu_holding", "-vvv"])
+        result = subprocess.run(["sudo", "criu", "dump", "-t", str(PID),\ 
+        "-D", str(__return_criu_dump_folder(self)), "-vvv"])
         if result.returncode == 0:
             print("OK")
         else:
             print("Dumping Failed")
-    def select_criu_dump_folder(self):
-        
-        path_string = os.getcwd()+ "/CriuDumps"
+    
+    def __return_criu_dump_folder(self):
+        return self.dump_folder_path_string
 
-        if not  os.path.exists(path_string):
-            os.mkdir(path_string)
-        
-        print("Entered select_criu_dump_foler")
-        print(path_string)
-
-    def dump_logging(Criu_dump_log: String):
+    def __dump_logging(Criu_dump_log: String):
         with open("dump_log.txt") as f:
-            f.write(new_dump_log_paragraph())
+            f.write(__new_dump_log_paragraph())
             f.write(Criu_dump_log)
 
-    def new_dump_log_paragraph():
-        
+    def __new_dump_log_paragraph():
         formatting_string = "-------------------\n New Entry\n -------------------\n"
-
         return formatting_string
