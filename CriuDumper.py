@@ -20,11 +20,11 @@ class CriuDumper:
         #TODO create a more sophisticated dump file storage system
 
         PID = PID_num 
-        result = subprocess.run(["sudo", "criu", "dump", "-t", str(PID)\ 
+        result = subprocess.run(["sudo", "criu", "dump", "-t", str(PID)
         ,"-D", str(__return_criu_dump_folder(self)), "-vvv"])
         if result.returncode == 0:
             print("OK")
-        else:
+        elif:
             print("Dumping Failed")
     
     def __return_criu_dump_folder(self):
