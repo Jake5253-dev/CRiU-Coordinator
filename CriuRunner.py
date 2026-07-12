@@ -54,6 +54,9 @@ class CriuRunner:
                 process_dict[count] = process_string_list[2]
             for key, value in process_dict.items():
                 print(f"{key}: {value}")
+            PID_to_stop = input("Which process would you like to stop?")
+            self.cd.dump_daemon_process(PID_to_stop)
+
         # self.cd.dump_daemon_process()
         
     def restore_process(self):
