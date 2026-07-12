@@ -64,5 +64,5 @@ class ProcessFinder:
             print(process)
         print(f"my process id is {self.my_id}")
 
-    def get_process_list() -> list:
+    def get_process_list(self) -> list:
         return self.list_of_processes

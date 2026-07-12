@@ -9,7 +9,7 @@ class CriuRunner:
         self.cd = CriuDumper()
         self.pf = ProcessFinder()
         
-        self.active_daemon_PID = self.pf.get_process_list: list
+        self.active_daemon_PID = self.pf.get_process_list
         self.dumps: list
         
         
