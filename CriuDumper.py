@@ -26,12 +26,11 @@ class CriuDumper:
         
         path_string = os.getcwd()+ "/CriuDumps"
 
-       if not  os.path.exists(path_string):
+        if not  os.path.exists(path_string):
             os.mkdir(path_string)
         
         print("Entered select_criu_dump_foler")
-        print(os.getcwd())
-        print(os.getcwd() + "CriuDumps")
+        print(path_string)
 
     def dump_logging(Criu_dump_log: String):
         with open("dump_log.txt") as f:
