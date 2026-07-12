@@ -9,7 +9,7 @@ class CriuRunner:
         self.cd = CriuDumper()
         self.pf = ProcessFinder()
         
-        self.active_daemon_PID = self.pf.get_process_list
+        self.active_daemon_PID = self.pf.get_process_list()
         self.dumps: list
         
         
@@ -40,8 +40,11 @@ class CriuRunner:
 
     def dump_process(self):
         print("Please select a process to stop:")
-        for process in self.active_daemon_PID:
-            print(process)
+        if not self.active_daemon_PID:
+            print("There are no processes to stop")
+        else:
+            for process in self.active_daemon_PID:
+                print(process)
         
         # self.cd.dump_daemon_process()
         
