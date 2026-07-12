@@ -7,7 +7,7 @@ class CriuRunner:
     def __init__(self):
         self.active_daemon_PID: list
         self.dumps: list
-        self.cr = CriuDumper()
+        self.cd = CriuDumper()
 
 
 
@@ -34,9 +34,12 @@ class CriuRunner:
                     continue
 
     def dump_process(self):
-        print("Entered CriuRunner method dump_process")
-        self.cr.select_criu_dump_folder()
-        print("Exited CiruRunner method dump_process")
+        print("Please select a process to stop:")
+        print(self.active_daemon_PID)
+        
+        
+        # self.cd.dump_daemon_process()
+        
     def restore_process(self):
         print("activated restoring a process")
 
