@@ -21,7 +21,6 @@ if __name__ == "__main__":
     print_logo()
     first_instructions()
     pf = ProcessFinder()
-    cd = CriuDumper()
     cr = CriuRunner()
     pf.get_process_list()
     cr.command_loop()
