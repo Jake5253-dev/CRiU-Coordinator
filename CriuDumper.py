@@ -22,7 +22,7 @@ class CriuDumper:
         folder_name = self.__create_folder_for_PID(PID_num)
         self.__dump_logging_new_entry()
         result = subprocess.run(["sudo", "criu", "dump", "-t", str(PID_num)
-        ,"-D", str(folder_name), "-vvv", "--log-file", "dump_log.txt"])
+        ,"-D", str(folder_name), "-vvv", "--log-file", "dump_details.txt"])
         if result.returncode == 0:
             print("OK")
         else:
