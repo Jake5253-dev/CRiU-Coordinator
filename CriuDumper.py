@@ -15,11 +15,10 @@ class CriuDumper:
 
     def dump_daemon_process(self, PID_num: str):
 
-        """ stops a running Daemon process, meaning that the standard input, output and error are not collected anywhere
-        and process is started as a new session, not connected to a terminal"""
+        """ dumps a running Daemon process, meaning that the standard input, output and error are not collected anywhere
+        and process is started as a new session, not connected to a terminal
+        Moves the dump into a local sub folder called CriuDumps, and generates a folder to store the contents of the dump """
 
-        #Stores the dump in a sub folder called criu_holding
-        #TODO create a more sophisticated dump file storage system
         folder_name = self.__create_folder_for_PID(PID_num)
         result = subprocess.run(["sudo", "criu", "dump", "-t", str(PID_num)
         ,"-D", str(folder_name), "-vvv"])
@@ -41,9 +40,11 @@ class CriuDumper:
         return formatting_string
 
     def __create_folder_for_PID(self, PID_num: str) -> str:
-
+        """Creates a unique folder for the PID dump, based on PID ID and datetime.now details.
+        Returns the directory path of newly created folder"""
+        
         now = datetime.now()
-        # SHould be day, 3 letter month, year, hour minute second then ms then miliseconds 
+        # format day, three letter month, year, hrs, mins, secs, milisecs
         new_folder_string = "PID_" + PID_num + "__" + now.strftime("%d-%b-%Y__%Hhrs-%Mmin-%Ssec-%fms")
         return_string = self.dump_folder_path_string + "/" + new_folder_string
         os.mkdir(return_string)
