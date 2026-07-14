@@ -20,7 +20,7 @@ class CriuDumper:
 
         #Stores the dump in a sub folder called criu_holding
         #TODO create a more sophisticated dump file storage system
-        folder_name = __create_folder_for_PID(PID_num)
+        folder_name = self.__create_folder_for_PID(PID_num)
         result = subprocess.run(["sudo", "criu", "dump", "-t", str(PID_num)
         ,"-D", str(folder_name), "-vvv"])
         if result.returncode == 0:
