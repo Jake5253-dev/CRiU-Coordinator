@@ -11,7 +11,7 @@ class ProcessFinder:
     def __init__(self):
         
         self.my_id = os.getpid()
-        self.list_of_processes = []
+        self.list_of_processes = self.__generate_process_list()
 
     def __generate_process_list(self):
         """ Generates a list of PIDs that are potential targets for stopping
@@ -20,7 +20,7 @@ class ProcessFinder:
 
         pid_list: str = subprocess.run(["ps", "-lax"], capture_output=True, text=True)
         back_to_lines = pid_list.stdout.splitlines()
-        self.list_of_processes = self.__filter_process_list(back_to_lines)
+        return self.__filter_process_list(back_to_lines)
         
 
     def __filter_process_list(self, unfiltered_list: list) -> list:
@@ -61,11 +61,14 @@ class ProcessFinder:
 
         """Method prints the process list and what PID # is associated with CRIU CoOrdinator"""
         print(self.__header())
-        self.__generate_process_list
+        self.refresh_process_list()
         for process in self.list_of_processes:
             print(process)
         print(f"my process id is {self.my_id}")
 
     def get_process_list(self) -> list:
-        self.__generate_process_list
+        self.refresh_process_list()
         return self.list_of_processes
+
+    def refresh_process_list(self):
+        self.list_of_processes = self.__generate_process_list()
