@@ -57,6 +57,7 @@ class CriuRunner:
             PID_to_stop = input("Which process would you like to stop?")
             PID_int = int(PID_to_stop)
             self.cd.dump_daemon_process(process_dict.get(PID_int))
+            self.active_daemon_PID = self.pf.get_process_list()
 
         # self.cd.dump_daemon_process()
         
