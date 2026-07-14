@@ -20,7 +20,7 @@ class CriuDumper:
         Moves the dump into a local sub folder called CriuDumps, and generates a folder to store the contents of the dump """
 
         folder_name = self.__create_folder_for_PID(PID_num)
-        self.__dump_logging_new_entry
+        self.__dump_logging_new_entry()
         result = subprocess.run(["sudo", "criu", "dump", "-t", str(PID_num)
         ,"-D", str(folder_name), "-vvv", "--log-file", "dump_log.txt"])
         if result.returncode == 0:
@@ -32,11 +32,12 @@ class CriuDumper:
         return self.dump_folder_path_string
 
     def __dump_logging_new_entry(self):
-        with open("dump_log.txt") as f:
-            f.write(__new_dump_log_paragraph())
+        with open("dump_log.txt","a") as f:
+            f.write(self.__new_dump_log_paragraph())
 
     def __new_dump_log_paragraph(self):
         formatting_string = "-------------------\n New Entry\n -------------------\n"
+        return formatting_string
 
     def __create_folder_for_PID(self, PID_num: str) -> str:
         """Creates a unique folder for the PID dump, based on PID ID and datetime.now details.
