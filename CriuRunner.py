@@ -64,3 +64,6 @@ class CriuRunner:
     def restore_process(self):
         print("activated restoring a process")
 
+    def PID_validation(self):
+        #TODO create a validator of inputs
+
