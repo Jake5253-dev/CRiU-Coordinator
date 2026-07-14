@@ -1,6 +1,6 @@
 import os
 import subprocess
-from datetime import date
+from datetime import datetime
 
 
 class CriuDumper:
@@ -44,7 +44,7 @@ class CriuDumper:
 
         now = datetime.now()
         # SHould be day, 3 letter month, year, hour minute second then ms then miliseconds 
-        new_folder_string = "PID " + PID_num + " " + now.strftime("%d-%b-%Y %H-%M-%S ms %f")
+        new_folder_string = "PID_" + PID_num + "__" + now.strftime("%d-%b-%Y__%Hhrs-%Mmin-%Ssec-%fms")
         return_string = self.dump_folder_path_string + "/" + new_folder_string
         os.mkdir(return_string)
         return return_string
