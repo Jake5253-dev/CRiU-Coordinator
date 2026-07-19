@@ -1,4 +1,5 @@
 from CriuDumper import CriuDumper
+from CriuRestorer import CriuRestorer
 from ProcessFinder import ProcessFinder
 
 class CriuRunner:
@@ -8,6 +9,7 @@ class CriuRunner:
     def __init__(self):
         self.cd = CriuDumper()
         self.pf = ProcessFinder()
+        self.cr = CriuRestorer()
         
         self.active_daemon_PID = self.pf.get_process_list()
         self.dumps: list
@@ -62,7 +64,7 @@ class CriuRunner:
         # self.cd.dump_daemon_process()
         
     def restore_process(self):
-        print("activated restoring a process")
+        cr.__get_list_of_dump_files()
 
     def PID_validation(self):
         pass
