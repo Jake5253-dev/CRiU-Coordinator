@@ -64,7 +64,7 @@ class CriuRunner:
         # self.cd.dump_daemon_process()
         
     def restore_process(self):
-        cres.__get_list_of_dump_files()
+        self.cres._get_list_of_dump_files()
 
     def PID_validation(self):
         pass

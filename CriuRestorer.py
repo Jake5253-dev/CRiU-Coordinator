@@ -8,10 +8,10 @@ class CriuRestorer:
         self.dump_folder_path_string= os.getcwd()+ "/CriuDumps"
         self.list_of_dumps = []
 
-    def __get_list_of_dump_files(self):
+    def _get_list_of_dump_files(self):
         """ Goes to the CriuDumps folder and gets all avaliable files from within"""
 
-        result = subprocess.run(["ls", "\CriuDumps"])
+        result = subprocess.run(["ls", "CriuDumps"])
         print(result)
 
 
