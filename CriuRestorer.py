@@ -16,7 +16,7 @@ class CriuRestorer:
         return list_of_results
 
     def get_restore_list(self) -> list:
-        self.__refresh_list_of_dumps
+        self._refresh_list_of_dumps()
         return self.list_of_dumps
 
     def restore_dump(self, dump_id: str):
@@ -28,6 +28,7 @@ class CriuRestorer:
         "--restore-detached", #detach process after restoring
         "-o", os.path.join(target_dir, "restore.log") #logging file
         ])
+        subprocess.run("reset")
         if result.returncode == 0:
             print("OK")
 
