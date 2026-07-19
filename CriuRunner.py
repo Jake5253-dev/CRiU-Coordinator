@@ -79,7 +79,9 @@ class CriuRunner:
             for key, value in dump_dict.items():
                 print(f"{key}: {value}")
             process_to_restore = input("Which process would you like to restore?")
-            print("you selected: " + process_to_restore)
+            dump_input = int(process_to_restore)
+            self.cres.restore_dump(dump_dict.get(dump_input))
+            
 
     def PID_validation(self):
         pass
