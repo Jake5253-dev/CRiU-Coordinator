@@ -15,8 +15,25 @@ class CriuRestorer:
         list_of_results = result.stdout.splitlines()
         return list_of_results
 
-    def get_restore_list(self):
+    def get_restore_list(self) -> list:
+        self.__refresh_list_of_dumps
         return self.list_of_dumps
+
+    def restore_dump(self, dump_id: str):
+
+        target_dir = os.path.abspath("CriuDumps/" + dump_id)
+        result = subprocess.Popen(["sudo", "criu", "restore",
+        "--images-dir", target_dir, #set the path directory to get images from
+        "-vvv",
+        "--restore-detached", #detach process after restoring
+        "-o", os.path.join(target_dir, "restore.log") #logging file
+        ])
+        if result.returncode == 0:
+            print("OK")
+
+
+    def __refresh_list_of_dumps(self):
+        self.list_of_dumps = self.__get_list_of_dump_files()
 
 
     
