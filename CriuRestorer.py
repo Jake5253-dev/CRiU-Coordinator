@@ -32,7 +32,7 @@ class CriuRestorer:
             print("OK")
 
 
-    def __refresh_list_of_dumps(self):
+    def _refresh_list_of_dumps(self):
         self.list_of_dumps = self.__get_list_of_dump_files()
 
 
