@@ -68,16 +68,15 @@ class CriuRunner:
     def restore_process(self):
         print("")
         print("Please select a process to restore:")
-        if not cres.get_restore_list:
+        if not self.cres.get_restore_list():
             print("There are no processes to restore from folder CriuDumps")
         else:
             dump_dict = {}
             count = 0
-            for process in cres.get_restore_list:
+            for dump in self.cres.get_restore_list():
                 count = count + 1
-                process_string_list = process.split()
-                process_dict[count] = process_string_list[2]
-            for key, value in process_dict.items():
+                dump_dict[count] = dump
+            for key, value in dump_dict.items():
                 print(f"{key}: {value}")
             process_to_restore = input("Which process would you like to restore?")
             print("you selected: " + process_to_restore)
