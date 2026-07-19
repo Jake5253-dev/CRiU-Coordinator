@@ -11,6 +11,8 @@ class CriuRunner:
         self.pf = ProcessFinder()
         self.cres = CriuRestorer()
         
+        #TODO: move all lists of dumps and processes to Criu
+        #Dumper and Restorer respectively
         self.active_daemon_PID = self.pf.get_process_list()
         self.dumps: list
         
@@ -64,7 +66,21 @@ class CriuRunner:
         # self.cd.dump_daemon_process()
         
     def restore_process(self):
-        self.cres._get_list_of_dump_files()
+        print("")
+        print("Please select a process to restore:")
+        if not cres.get_restore_list:
+            print("There are no processes to restore from folder CriuDumps")
+        else:
+            dump_dict = {}
+            count = 0
+            for process in cres.get_restore_list:
+                count = count + 1
+                process_string_list = process.split()
+                process_dict[count] = process_string_list[2]
+            for key, value in process_dict.items():
+                print(f"{key}: {value}")
+            process_to_restore = input("Which process would you like to restore?")
+            print("you selected: " + process_to_restore)
 
     def PID_validation(self):
         pass
