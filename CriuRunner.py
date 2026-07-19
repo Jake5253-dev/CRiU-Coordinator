@@ -71,6 +71,7 @@ class CriuRunner:
         if not self.cres.get_restore_list():
             print("There are no processes to restore from folder CriuDumps")
         else:
+            self.cres.refresh_process_list #refresh lists of processes to dump
             dump_dict = {}
             count = 0
             for dump in self.cres.get_restore_list():
@@ -81,7 +82,7 @@ class CriuRunner:
             process_to_restore = input("Which process would you like to restore?")
             dump_input = int(process_to_restore)
             self.cres.restore_dump(dump_dict.get(dump_input))
-            
+
 
     def PID_validation(self):
         pass
