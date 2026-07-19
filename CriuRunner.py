@@ -71,7 +71,7 @@ class CriuRunner:
         if not self.cres.get_restore_list():
             print("There are no processes to restore from folder CriuDumps")
         else:
-            self.cres.refresh_process_list #refresh lists of processes to dump
+            self.cres.refresh_process_list() #refresh lists of processes to dump
             dump_dict = {}
             count = 0
             for dump in self.cres.get_restore_list():
