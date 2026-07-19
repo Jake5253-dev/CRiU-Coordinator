@@ -11,8 +11,10 @@ class CriuRestorer:
     def _get_list_of_dump_files(self):
         """ Goes to the CriuDumps folder and gets all avaliable files from within"""
 
-        result = subprocess.run(["ls", "CriuDumps"])
-        print(result)
+        result = subprocess.run(["ls", "CriuDumps"],capture_output=True, text=True)
+        list_of_results = result.stdout.splitlines()
+        for item in list_of_results:
+            print(item)
 
 
     
