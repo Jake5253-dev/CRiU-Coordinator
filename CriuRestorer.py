@@ -28,7 +28,9 @@ class CriuRestorer:
         "--restore-detached", #detach process after restoring
         "-o", os.path.join(target_dir, "restore.log") #logging file
         ])
-        subprocess.run("reset")
+        result.wait()
+
+        subprocess.run("stty sane", shell=True)
         if result.returncode == 0:
             print("OK")
 
