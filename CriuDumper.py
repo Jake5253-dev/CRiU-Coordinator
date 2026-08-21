@@ -8,9 +8,9 @@ class CriuDumper:
 
     def __init__(self):
 
-        self.dump_folder_path_string= os.getcwd()+ "/CriuDumps"
-        if not  os.path.exists(self.dump_folder_path_string):
-            os.mkdir(self.dump_folder_path_string)
+        self.__dump_folder_path_string = os.getcwd()+ "/CriuDumps"
+        if not  os.path.exists(self.__dump_folder_path_string):
+            os.mkdir(self.__dump_folder_path_string)
 
 
     def dump_daemon_process(self, PID_num: str):
@@ -29,7 +29,7 @@ class CriuDumper:
             print("Dumping Failed")
     
     def __return_criu_dump_folder(self):
-        return self.dump_folder_path_string
+        return self.__dump_folder_path_string
 
     def __dump_logging_new_entry(self):
         with open("dump_log.txt","a") as f:
@@ -46,6 +46,6 @@ class CriuDumper:
         now = datetime.now()
         # format day, three letter month, year, hrs, mins, secs, milisecs
         new_folder_string = "PID_" + PID_num + "__" + now.strftime("%d-%b-%Y__%Hhrs-%Mmin-%Ssec-%fms")
-        return_string = self.dump_folder_path_string + "/" + new_folder_string
+        return_string = self.__dump_folder_path_string + "/" + new_folder_string
         os.mkdir(return_string)
         return return_string
