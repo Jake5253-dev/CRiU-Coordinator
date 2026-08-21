@@ -61,7 +61,7 @@ class CriuRunner:
                 print(f"{key}: {value}")
             PID_to_stop = input("Which process would you like to stop?")
             PID_int = int(PID_to_stop)
-            self.__cd.dump_daemon_process(process_dict.get(PID_int))
+            self.__cd.dump_daemon_process(process_dict.get(PID_int,""))
             self.__active_daemon_PID = self.__pf.get_process_list()
 
         
@@ -82,7 +82,7 @@ class CriuRunner:
                 print(f"{key}: {value}")
             process_to_restore = input("Which process would you like to restore?")
             dump_input = int(process_to_restore)
-            self.__cres.restore_dump(dump_dict.get(dump_input))
+            self.__cres.restore_dump(dump_dict.get(dump_input,""))
 
 
     def PID_validation(self):
