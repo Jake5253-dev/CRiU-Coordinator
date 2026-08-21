@@ -11,7 +11,7 @@ class ProcessFinder:
     def __init__(self):
         
         self.__my_id = os.getpid()
-        self.__list_of_processes = self.__generate_process_list()
+        self.__list_of_processes: list[str] = self.__generate_process_list()
 
     def __generate_process_list(self):
         """ Generates a list of PIDs that are potential targets for stopping
