@@ -21,6 +21,8 @@ class CriuRunner:
 
 
     def command_loop(self):
+        """ Runs the command loop for CRiU CoOrdinator, exits upon selection of option 3"""
+
         running = True
         while running:
             self.__active_daemon_PID = self.__pf.get_process_list()
@@ -46,6 +48,7 @@ class CriuRunner:
                     continue
 
     def dump_process(self):
+        """ Starts the process checkpointing system """
         print("")
         print("Please select a process to stop:")
         if not self.__active_daemon_PID:
@@ -67,6 +70,8 @@ class CriuRunner:
         
         
     def restore_process(self):
+        """ Starts the restoration of a process from the image file contained within """
+        """ CriuDumps folder"""
         print("")
         print("Please select a process to restore:")
         if not self.__cres.get_restore_list():
