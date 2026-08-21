@@ -13,7 +13,7 @@ class CriuRunner:
         
         #TODO: move all lists of dumps and processes to Criu
         #Dumper and Restorer respectively
-        self.__active_daemon_PID = self.__pf.get_process_list()
+        self.__active_daemon_PID: list[str] = self.__pf.get_process_list()
         self.__dumps: list
         
         
@@ -30,7 +30,7 @@ class CriuRunner:
             print("1: dump a process")
             print("2: restore a process")
             print("3: exit")
-            response = input()
+            response: str = input()
             
             match response:
                 case "1":
@@ -51,7 +51,7 @@ class CriuRunner:
         if not self.__active_daemon_PID:
             print("There are no processes to stop")
         else:
-            process_dict = {}
+            process_dict: dict[int,str] = {}
             count = 0
             for process in self.__active_daemon_PID:
                 count = count + 1
