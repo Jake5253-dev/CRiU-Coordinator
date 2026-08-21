@@ -6,21 +6,23 @@ class CriuRestorer:
 
     def __init__(self):
         self.__dump_folder_path_string: str = os.getcwd()+ "/CriuDumps"
-        self.__list_of_dumps: str = self.__get_list_of_dump_files()
+        self.__list_of_dumps: list[str] = self.__get_list_of_dump_files()
 
-    def __get_list_of_dump_files(self):
+    def __get_list_of_dump_files(self)-> list[str]:
         """ Goes to the CriuDumps folder and gets all avaliable files from within"""
 
-        result = subprocess.run(["ls", "CriuDumps"],capture_output=True, text=True)
+        result: subprocess.CompletedProcess = subprocess.run(["ls", "CriuDumps"],capture_output=True, text=True)
         list_of_results = result.stdout.splitlines()
         return list_of_results
 
-    def get_restore_list(self) -> list:
+    def get_restore_list(self) -> list[str]:
+        """Returns a list of all possible dump files that can be restored """
         self._refresh_list_of_dumps()
         return self.__list_of_dumps
 
     def restore_dump(self, dump_id: str):
-
+        """Restores a CRiU Image dump from the CriuDumps folder located within the application"""
+        """ This method restores daemon processes"""
         target_dir = os.path.abspath("CriuDumps/" + dump_id)
         result = subprocess.Popen(["sudo", "criu", "restore",
         "--images-dir", target_dir, #set the path directory to get images from
@@ -29,7 +31,7 @@ class CriuRestorer:
         "-o", os.path.join(target_dir, "restore.log") #logging file
         ])
         result.wait()
-
+        #reset the shell, as the alignment goes off it it doesn't run this process
         subprocess.run("stty sane", shell=True)
         if result.returncode == 0:
             print("OK")
