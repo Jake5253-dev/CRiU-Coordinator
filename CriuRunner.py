@@ -36,9 +36,9 @@ class CriuRunner:
             
             match response:
                 case "1":
-                    self.dump_process()
+                    self.__dump_process()
                 case "2":
-                    self.restore_process()
+                    self.__restore_process()
                 case "3":
                     running = False
                     print("Shutting down CRiU CoOridnator")
@@ -47,7 +47,7 @@ class CriuRunner:
                     print("Please select an avaliable option")
                     continue
 
-    def dump_process(self):
+    def __dump_process(self):
         """ Starts the process checkpointing system """
         print("")
         print("Please select a process to stop:")
@@ -69,7 +69,7 @@ class CriuRunner:
 
         
         
-    def restore_process(self):
+    def __restore_process(self):
         """ Starts the restoration of a process from the image file contained within """
         """ CriuDumps folder"""
         print("")
