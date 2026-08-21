@@ -1,7 +1,6 @@
 """Starting point for CRiU-Coordinator"""
 
-from ProcessFinder import ProcessFinder
-from CriuDumper import CriuDumper
+
 from CriuRunner import CriuRunner
 
 def print_logo():
