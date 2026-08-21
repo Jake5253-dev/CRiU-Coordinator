@@ -10,8 +10,8 @@ class ProcessFinder:
 
     def __init__(self):
         
-        self.my_id = os.getpid()
-        self.list_of_processes = self.__generate_process_list()
+        self.__my_id = os.getpid()
+        self.__list_of_processes = self.__generate_process_list()
 
     def __generate_process_list(self):
         """ Generates a list of PIDs that are potential targets for stopping
@@ -47,7 +47,7 @@ class ProcessFinder:
             
             #This is the third item in the string, which is PID
             #Other columns may randomly be the same so we must target PID column only
-            if split_list[2] == str(self.my_id):
+            if split_list[2] == str(self.__my_id):
                 self_pid= True
 
             if self_pid == False:
@@ -62,13 +62,13 @@ class ProcessFinder:
         """Method prints the process list and what PID # is associated with CRIU CoOrdinator"""
         print(self.__header())
         self.refresh_process_list()
-        for process in self.list_of_processes:
+        for process in self.__list_of_processes:
             print(process)
-        print(f"my process id is {self.my_id}")
+        print(f"my process id is {self.__my_id}")
 
     def get_process_list(self) -> list:
         self.refresh_process_list()
-        return self.list_of_processes
+        return self.__list_of_processes
 
     def refresh_process_list(self):
-        self.list_of_processes = self.__generate_process_list()
+        self.__list_of_processes = self.__generate_process_list()
