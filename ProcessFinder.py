@@ -18,12 +18,12 @@ class ProcessFinder:
         by CRIU CoOrdinator
         Invoked multiple times to regenerate list"""
 
-        pid_list: str = subprocess.run(["ps", "-lax"], capture_output=True, text=True)
-        back_to_lines = pid_list.stdout.splitlines()
+        pid_list: CompletedProcess = subprocess.run(["ps", "-lax"], capture_output=True, text=True)
+        back_to_lines: list[str] = pid_list.stdout.splitlines()
         return self.__filter_process_list(back_to_lines)
         
 
-    def __filter_process_list(self, unfiltered_list: list) -> list:
+    def __filter_process_list(self, unfiltered_list: list[str]) -> list:
         """Handles the filtering of the lists returned to __generate_process_list"""
 
         string_list: list = []
@@ -39,10 +39,10 @@ class ProcessFinder:
     def __remove_self_pid(self, string_list: list) -> list:
 
         """ Removes the Processes's own PID as we don't want this to be dumped""" 
-        return_list = []
+        return_list: list[str] = []
         for line in string_list:
             self_pid = False
-            split_list = line.split()
+            split_list: list[str] = line.split()
             
             
             #This is the third item in the string, which is PID
