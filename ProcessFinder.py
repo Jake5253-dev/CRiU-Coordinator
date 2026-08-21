@@ -18,7 +18,7 @@ class ProcessFinder:
         by CRIU CoOrdinator
         Invoked multiple times to regenerate list"""
 
-        pid_list: CompletedProcess = subprocess.run(["ps", "-lax"], capture_output=True, text=True)
+        pid_list: subprocess.CompletedProcess = subprocess.run(["ps", "-lax"], capture_output=True, text=True)
         back_to_lines: list[str] = pid_list.stdout.splitlines()
         return self.__filter_process_list(back_to_lines)
         
