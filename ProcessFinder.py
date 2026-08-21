@@ -60,6 +60,7 @@ class ProcessFinder:
     def print_process_list(self):
 
         """Method prints the process list and what PID # is associated with CRIU CoOrdinator"""
+        """ Prints directly to terminal"""
         print(self.__header())
         self.refresh_process_list()
         for process in self.__list_of_processes:
